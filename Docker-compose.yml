@@ -1,25 +1,15 @@
+# docker-compose.yml
 version: '3.8'
 
 services:
   jupiter:
-    image: jupiter:V2
-    build:
-      context: .
+    image: jupiter:V3
     ports:
       - "83:83"
-    volumes:
-      - ./:/app
-      - /app/node_modules
-    environment:
-      - PORT=81
-      - CHOKIDAR_USEPOLLING=true
-      - WATCHPACK_POLLING=true
-    stdin_open: true
-    tty: true
     restart: unless-stopped
-    networks:
+     networks:
       cosmos:
-        ipv4_address: 192.168.95.37
+        ipv4_address: 192.168.95.31
 
 networks:
   cosmos:

@@ -1,13 +1,15 @@
 # Dockerfile
+
+# Phase 1 : Build de l'application React
 FROM node:20-alpine AS builder
 
-# Installer Yarn et créer l'app
+# Définir le répertoire de travail
 WORKDIR /app
 
 # Copier les fichiers de dépendances
 COPY package.json yarn.lock ./
 
-# Installer les dépendances avec Yarn
+# Installer les dépendances avec yarn
 RUN npm install -g yarn && yarn install
 
 # Copier le reste du code
@@ -16,17 +18,19 @@ COPY . .
 # Construire l'application
 RUN yarn build
 
-# Deuxième étape : serveur léger pour servir le build
-FROM nginx:alpine
+# Phase 2 : Serveur de production léger
+FROM node:20-alpine
 
-# Copier la config personnalisée de nginx (optionnel mais utile pour SPA)
-COPY nginx.conf /etc/nginx/nginx.conf
+# Installer un serveur statique simple
+RUN npm install -g serve
 
-# Supprimer la config par défaut et copier le build
-RUN rm -rf /usr/share/nginx/html/*
-COPY --from=builder /app/build /usr/share/nginx/html
+WORKDIR /app
 
-# Exposer le port 83 (dans le conteneur)
+# Copier le dossier build depuis la phase de build
+COPY --from=builder /app/build ./build
+
+# Exposer le port 83
 EXPOSE 83
 
-# Pas besoin de CMD, nginx lance automatiquement
+# Commande de démarrage
+CMD ["serve", "-s", "build", "-p", "83"]

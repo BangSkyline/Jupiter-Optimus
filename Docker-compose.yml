@@ -7,7 +7,7 @@ services:
     ports:
       - "83:83"
     restart: unless-stopped
-     networks:
+    networks:
       cosmos:
         ipv4_address: 192.168.95.31
 

@@ -9,8 +9,8 @@ WORKDIR /app
 # Copier les fichiers de dépendances
 COPY package.json yarn.lock ./
 
-# Installer les dépendances avec yarn
-RUN npm install -g yarn && yarn install
+# ✅ Yarn est déjà installé → on fait juste yarn install
+RUN yarn install
 
 # Copier le reste du code
 COPY . .
@@ -21,7 +21,7 @@ RUN yarn build
 # Phase 2 : Serveur de production léger
 FROM node:20-alpine
 
-# Installer un serveur statique simple
+# Installer serve (pas de conflit ici)
 RUN npm install -g serve
 
 WORKDIR /app
@@ -32,5 +32,5 @@ COPY --from=builder /app/build ./build
 # Exposer le port 83
 EXPOSE 83
 
-# Commande de démarrage
+# Démarrer le serveur
 CMD ["serve", "-s", "build", "-p", "83"]

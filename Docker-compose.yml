@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  jupiter:
+    image: jupiter:V2
+    build:
+      context: .
+    ports:
+      - "81:81"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - PORT=81
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    networks:
+      cosmos:
+        ipv4_address: 192.168.95.37
+
+networks:
+  cosmos:
+    external: true
+    name: cosmos

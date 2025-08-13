@@ -1,0 +1,265 @@
+/* Roman Empire Inspired Styling */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.6;
+  color: #461044;
+  overflow-x: hidden;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e6e6e6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #dbb979, #ffdb8d);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ffdb8d, #dbb979);
+}
+
+/* Roman-inspired decorative elements */
+.roman-border {
+  position: relative;
+}
+
+.roman-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #dbb979, transparent);
+}
+
+.roman-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #dbb979, transparent);
+}
+
+/* Marble texture effect */
+.marble-bg {
+  background: linear-gradient(45deg, 
+    rgba(230, 230, 230, 0.9) 0%, 
+    rgba(255, 219, 141, 0.3) 25%, 
+    rgba(230, 230, 230, 0.9) 50%, 
+    rgba(219, 185, 121, 0.3) 75%, 
+    rgba(230, 230, 230, 0.9) 100%);
+  background-size: 200% 200%;
+  animation: marbleShift 20s ease-in-out infinite;
+}
+
+@keyframes marbleShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Golden accent animations */
+.gold-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 219, 141, 0.4), 
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.gold-shimmer:hover::before {
+  left: 100%;
+}
+
+/* Purple royal glow effect */
+.royal-glow {
+  box-shadow: 0 0 20px rgba(70, 16, 68, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.royal-glow:hover {
+  box-shadow: 0 0 30px rgba(70, 16, 68, 0.5);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(70, 16, 68, 0.15);
+}
+
+/* Button enhancements */
+.btn-imperial {
+  position: relative;
+  overflow: hidden;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn-imperial::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-imperial:hover::before {
+  left: 100%;
+}
+
+/* Navigation smooth transitions */
+nav a, nav button {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after, nav button::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #dbb979;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after, nav button:hover::after {
+  width: 100%;
+}
+
+/* Form styling */
+.form-imperial input,
+.form-imperial textarea,
+.form-imperial select {
+  font-family: 'Cormorant Garamond', serif;
+  transition: all 0.3s ease;
+}
+
+.form-imperial input:focus,
+.form-imperial textarea:focus,
+.form-imperial select:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(219, 185, 121, 0.15);
+}
+
+/* Loading animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive text scaling */
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+}
+
+/* High contrast for accessibility */
+@media (prefers-contrast: high) {
+  .text-opacity-80 {
+    opacity: 1;
+  }
+  
+  .border-opacity-30 {
+    opacity: 1;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+}

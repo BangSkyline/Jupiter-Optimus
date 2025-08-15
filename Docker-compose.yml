@@ -3,6 +3,9 @@ version: '3.8'
 
 services:
   jupiter:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: jupiter:V3
     ports:
       - "83:83"
